@@ -1,0 +1,35 @@
+.text_section-1 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 30px;
+  font-style: italic;
+}
+
+.text_section-2 {
+  text-decoration: line-through;
+  text-align: left;
+}
+
+.text_section-3 {
+  text-align: center;
+  text-transform: uppercase;
+  text-indent: 20px;
+}
+
+.text_section-4 {
+  color: #050596;
+  word-spacing: 30px;
+  text-decoration: overline;
+  text-decoration-style: wavy;
+  text-shadow: 1px 1px 2px #343438;
+  
+}
+
+.text_section-5 {
+  letter-spacing: 5px;
+  text-decoration:underline;
+  text-decoration-thickness: 3px;
+  text-decoration-style: double;
+}
+
