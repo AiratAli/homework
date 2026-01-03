@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Письмо Деду Морозу</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Comfortaa:wght@400;600&display=swap');
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background-image: url('https://png.pngtree.com/background/20230610/original/pngtree-an-animated-christmas-tree-with-snow-surrounding-it-picture-image_3043681.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Comfortaa', cursive;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -20px;
+            color: #fff;
+            font-size: 1.3em;
+            pointer-events: none;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            max-width: 500px;
+            z-index: 2;
+        }
+
+        /* Обертка для письма - НОВЫЙ ЭЛЕМЕНТ */
+        .letter-wrapper {
+            width: 100%;
+            position: relative;
+            margin-bottom: 40px;
+            min-height: 55vh;
+            max-height: 60vh;
+            background: rgba(255, 255, 245, 0.88);
+            border: 8px double #27ae60;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            padding: 0; /* Убрали padding из wrapper */
+            box-sizing: border-box;
+        }
+
+        /* Измененная структура: только текст скроллится */
+        .letter {
+            width: 100%;
+            height: 100%;
+            padding: 35px 25px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #27ae60 #fff8e7;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 2;
+            transition: all 0.8s ease;
+        }
+
+        .letter.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .letter::-webkit-scrollbar { width: 8px; }
+        .letter::-webkit-scrollbar-track { background: #fff8e7; border-radius: 10px; }
+        .letter::-webkit-scrollbar-thumb { background: #27ae60; border-radius: 10px; }
+
+        .inner-snow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .inner-snowflake {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 0 10px rgba(173, 216, 230, 0.6);
+            opacity: 1;
+        }
+
+        /* Контент письма с увеличенным нижним отступом */
+        .letter-content {
+            color: #1e0000;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.7);
+            position: relative;
+            z-index: 2;
+            padding-bottom: 120px; /* Большой отступ снизу для нижних веточек */
+            min-height: 100%;
+            box-sizing: border-box;
+        }
+
+        .greeting {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(28px, 8vw, 40px);
+            color: #27ae60;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .text {
+            font-size: clamp(15px, 4.5vw, 19px);
+            line-height: 1.9;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(26px, 7.5vw, 34px);
+            color: #27ae60;
+            text-align: right;
+        }
+
+        .send-btn {
+            padding: 14px 55px;
+            font-size: clamp(18px, 5vw, 21px);
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(39,174,96,0.6);
+            transition: all 0.3s;
+            z-index: 20;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(39,174,96,0.8);
+            background: #219653;
+        }
+
+        .send-btn.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Анимации для превращения в самолет */
+        .letter-wrapper.flying {
+            animation: becomePlane 0.8s ease forwards, flyAway 3s 0.8s ease forwards !important;
+        }
+
+        @keyframes becomePlane {
+            0% { transform: scale(1) rotate(0deg); border-radius: 20px; }
+            50% { transform: scale(0.9) rotate(5deg); border-radius: 25px; }
+            100% { transform: scale(0.4) rotate(45deg); border-radius: 5px; }
+        }
+
+        @keyframes flyAway {
+            0% { transform: translate(0, 0) rotate(45deg) scale(0.4); opacity: 1; }
+            100% { transform: translate(1400px, -800px) rotate(90deg) scale(0.2); opacity: 0; }
+        }
+
+        .success {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(255,255,255,0.97);
+            padding: 40px 60px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            font-size: clamp(26px, 8vw, 36px);
+            color: #27ae60;
+            font-family: 'Dancing Script', cursive;
+            z-index: 100;
+            transition: transform 0.8s ease;
+            max-width: 90%;
+        }
+
+        .success.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .success.hide {
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.8s ease;
+        }
+
+        /* Веточки ели в углах - теперь фиксированы к letter-wrapper */
+        .corner-decor {
+            position: absolute;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            pointer-events: none;
+            z-index: 3;
+            width: 180px;
+            height: 180px;
+        }
+
+        .top-left {
+            top: -70px;
+            left: -70px;
+            background-image: url('https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Christmas-PNG/Christmas_Corner_Decoration_PNG_Clipart_Image.png?m=1629788693');
+        }
+
+        .top-right {
+            top: -70px;
+            right: -70px;
+            transform: scaleX(-1);
+            background-image: url('https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Christmas-PNG/Christmas_Corner_Decoration_PNG_Clipart_Image.png?m=1629788693');
+        }
+
+        /* Веточки теперь фиксированы к letter-wrapper и не скроллятся */
+        .bottom-left {
+            bottom: -70px;
+            left: -70px;
+            transform: scaleY(-1);
+            background-image: url('https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Christmas-PNG/Christmas_Corner_Decoration_PNG_Clipart_Image.png?m=1629788693');
+        }
+
+        .bottom-right {
+            bottom: -70px;
+            right: -70px;
+            transform: scaleX(-1) scaleY(-1);
+            background-image: url('https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Christmas-PNG/Christmas_Corner_Decoration_PNG_Clipart_Image.png?m=1629788693');
+        }
+
+        /* Адаптация для мобильных устройств */
+        @media (max-width: 768px) {
+            .corner-decor {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .top-left {
+                top: -60px;
+                left: -60px;
+            }
+            
+            .top-right {
+                top: -60px;
+                right: -60px;
+            }
+            
+            .bottom-left {
+                bottom: -60px;
+                left: -60px;
+            }
+            
+            .bottom-right {
+                bottom: -60px;
+                right: -60px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .corner-decor {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .top-left {
+                top: -50px;
+                left: -50px;
+            }
+            
+            .top-right {
+                top: -50px;
+                right: -50px;
+            }
+            
+            .bottom-left {
+                bottom: -50px;
+                left: -50px;
+            }
+            
+            .bottom-right {
+                bottom: -50px;
+                right: -50px;
+            }
+            
+            .letter-content {
+                padding-bottom: 100px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { 
+                width: 95%; 
+                max-width: 95%;
+            }
+            
+            .letter-wrapper { 
+                min-height: 50vh; 
+                max-height: 55vh;
+                border-width: 6px;
+            }
+            
+            .letter { 
+                padding: 25px 18px; 
+            }
+            
+            .corner-decor { 
+                width: 100px; 
+                height: 100px; 
+            }
+            
+            .top-left {
+                top: -40px;
+                left: -40px;
+            }
+            
+            .top-right {
+                top: -40px;
+                right: -40px;
+            }
+            
+            .bottom-left {
+                bottom: -40px;
+                left: -40px;
+            }
+            
+            .bottom-right {
+                bottom: -40px;
+                right: -40px;
+            }
+            
+            .letter-content { 
+                padding-bottom: 80px; 
+            }
+            
+            .send-btn {
+                padding: 12px 40px;
+                font-size: clamp(16px, 4.5vw, 19px);
+            }
+            
+            .success {
+                padding: 30px 40px;
+                font-size: clamp(22px, 7vw, 30px);
+            }
+        }
+
+        @media (max-width: 360px) {
+            .corner-decor { 
+                width: 80px; 
+                height: 80px; 
+            }
+            
+            .top-left {
+                top: -35px;
+                left: -35px;
+            }
+            
+            .top-right {
+                top: -35px;
+                right: -35px;
+            }
+            
+            .bottom-left {
+                bottom: -35px;
+                left: -35px;
+            }
+            
+            .bottom-right {
+                bottom: -35px;
+                right: -35px;
+            }
+            
+            .letter-content { 
+                padding-bottom: 70px; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="container">
+
+        <!-- Обертка для письма с веточками -->
+        <div class="letter-wrapper" id="letterWrapper">
+            <!-- Веточки в четырёх углах wrapper -->
+            <div class="corner-decor top-left"></div>
+            <div class="corner-decor top-right"></div>
+            <div class="corner-decor bottom-left"></div>
+            <div class="corner-decor bottom-right"></div>
+
+            <!-- Блок с текстом, который скроллится -->
+            <div class="letter" id="letter">
+                <div class="inner-snow" id="innerSnow"></div>
+
+                <div class="letter-content">
+                    <div class="greeting">Дорогой Дедушка Мороз! 🎅</div>
+                    <div class="text">
+                        Здравствуй, добрый волшебник!<br><br>
+                        В этом году я старался быть послушным, послушным по отношению к вере, к Аллаху и продолжу этот путь. И в новом 2026 году, я хочу найти такую работу, чтобы работать с удовольствием и зарабатывать денег столько, чтобы мне хватало на все мои потребности и потребности моей семьи, чтобы я успевал делать рабочие дела и домашние и главное успевал проводить больше времени со своей женой и детьми, летая в разные страны, моря - для души и здоровья. Пусть мое здоровье и здоровье моей семьи будет сто процентным. Мечтаю о настоящем новогоднем чуде в 2026 году.<br><br>
+                        Пожалуйста, подари радость моей семье и всем детям на свете.
+                        Пусть снег укроет все грустные моменты, а подарки принесут улыбки и тепло!<br><br>
+                        Спасибо тебе за веру в сказку каждый год ❄️✨
+                    </div>
+                    <div class="signature">С любовью,<br>Айрат❤️</div>
+                </div>
+            </div>
+        </div>
+
+        <button class="send-btn" id="sendBtn">Отправить</button>
+    </div>
+
+    <div class="success" id="success">
+        Письмо улетело к Деду Морозу!<br><br>
+        Жди волшебства под ёлкой! 🎄✨
+    </div>
+
+    <script>
+        function createSnow(container, count, className) {
+            for (let i = 0; i < count; i++) {
+                const snow = document.createElement('div');
+                snow.className = className;
+                snow.textContent = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+                snow.style.left = Math.random() * 100 + '%';
+                snow.style.animationDuration = (Math.random() * 8 + 7) + 's';
+                snow.style.animationDelay = Math.random() * 5 + 's';
+                snow.style.fontSize = (Math.random() * 0.8 + 0.8) + 'em';
+                snow.style.opacity = Math.random() * 0.4 + 0.5;
+                container.appendChild(snow);
+            }
+        }
+
+        createSnow(document.body, 100, 'snowflake');
+
+        function createSnowInside() {
+            const container = document.getElementById('innerSnow');
+            const total = 45;
+
+            for (let i = 0; i < total; i++) {
+                const snow = document.createElement('div');
+                snow.className = 'inner-snowflake';
+                snow.textContent = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+
+                const size = Math.random() * 30 + 25;
+                snow.style.fontSize = size + 'px';
+
+                let topPos;
+                if (i < 15) {
+                    topPos = Math.random() * 30 + '%';
+                } else {
+                    topPos = Math.random() * 170 + 30 + '%';
+                }
+                snow.style.top = topPos;
+
+                snow.style.left = Math.random() * 90 + 5 + '%';
+
+                snow.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+
+                container.appendChild(snow);
+            }
+        }
+
+        createSnowInside();
+
+        const letterWrapper = document.getElementById('letterWrapper');
+        const sendBtn = document.getElementById('sendBtn');
+        const success = document.getElementById('success');
+
+        sendBtn.addEventListener('click', function() {
+            sendBtn.disabled = true;
+            sendBtn.textContent = 'Летит к Северному полюсу...';
+
+            letterWrapper.classList.add('flying');
+
+            setTimeout(() => {
+                success.classList.add('show');
+                sendBtn.classList.add('hidden');
+                
+                // Автоматическое скрытие окна через 5 секунд
+                setTimeout(() => {
+                    success.classList.remove('show');
+                    success.classList.add('hide');
+                    
+                    // Скрываем письмо и кнопку через небольшой промежуток
+                    setTimeout(() => {
+                        letterWrapper.classList.add('hidden');
+                        sendBtn.classList.add('hidden');
+                    }, 800);
+                    
+                }, 2500); // 2,5 секунды
+                
+            }, 3800);
+        });
+    </script>
+</body>
+</html>
