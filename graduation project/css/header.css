@@ -190,7 +190,6 @@
     position: relative;
     z-index: 1;
     left: -10px;
-    cursor: pointer;
 }
 
 .hero__title-span {
@@ -262,4 +261,5 @@
     50% {
         transform: translateX(6px);
     }
+
 }
