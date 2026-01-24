@@ -22,11 +22,6 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             font-family: 'Comfortaa', cursive;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
         }
 
         .snowflake {
@@ -41,19 +36,26 @@
         }
 
         @keyframes fall {
-            to {
-                transform: translateY(110vh) rotate(360deg);
-            }
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        table.center-table {
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse;
+        }
+
+        td.center-cell {
+            text-align: center;
+            vertical-align: middle;
         }
 
         .container {
             position: relative;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             width: 90%;
             max-width: 500px;
+            margin: 0 auto;
             z-index: 2;
         }
 
@@ -61,8 +63,9 @@
             width: 100%;
             position: relative;
             margin-bottom: 40px;
-            min-height: 55vh;
-            max-height: 60vh;
+            /* min-height: 55vh;
+            max-height: 60vh; */
+            height: 350px;
             background: rgba(255, 255, 245, 0.88);
             border: 8px double #27ae60;
             border-radius: 20px;
@@ -249,400 +252,196 @@
             background-image: url('https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Christmas-PNG/Christmas_Corner_Decoration_PNG_Clipart_Image.png?m=1629788693');
         }
 
+        /* медиа-запросы — один в один из твоего оригинального кода */
         @media (max-width: 768px) {
-            .container {
-                width: 88%;
-                max-width: 88%;
-            }
-            
-            .corner-decor {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .top-left {
-                top: -60px;
-                left: -60px;
-            }
-            
-            .top-right {
-                top: -60px;
-                right: -60px;
-            }
-            
-            .bottom-left {
-                bottom: -60px;
-                left: -60px;
-            }
-            
-            .bottom-right {
-                bottom: -60px;
-                right: -60px;
-            }
-            
-            .text {
-                text-align: left; 
-                text-align-last: left;
-                hyphens: auto;
-                -webkit-hyphens: auto;
-                -ms-hyphens: auto;
-                word-spacing: 0px; 
-                line-height: 1.8;
-            }
+            .container { width: 88%; max-width: 88%; }
+            .corner-decor { width: 150px; height: 150px; }
+            .top-left { top: -60px; left: -60px; }
+            .top-right { top: -60px; right: -60px; }
+            .bottom-left { bottom: -60px; left: -60px; }
+            .bottom-right { bottom: -60px; right: -60px; }
+            .text { text-align: left; text-align-last: left; hyphens: auto; -webkit-hyphens: auto; -ms-hyphens: auto; word-spacing: 0px; line-height: 1.8; }
         }
 
         @media (max-width: 600px) {
-            .container {
-                width: 86%;
-                max-width: 86%;
-            }
-            
-            .corner-decor {
-                width: 130px;
-                height: 130px;
-            }
-            
-            .top-left {
-                top: -50px;
-                left: -50px;
-            }
-            
-            .top-right {
-                top: -50px;
-                right: -50px;
-            }
-            
-            .bottom-left {
-                bottom: -50px;
-                left: -50px;
-            }
-            
-            .bottom-right {
-                bottom: -50px;
-                right: -50px;
-            }
-            
-            .letter-content {
-                padding-bottom: 100px;
-            }
-            
-            .text {
-                font-size: clamp(14px, 4vw, 17px);
-                line-height: 1.7;
-            }
+            .container { width: 86%; max-width: 86%; }
+            .corner-decor { width: 130px; height: 130px; }
+            .top-left { top: -50px; left: -50px; }
+            .top-right { top: -50px; right: -50px; }
+            .bottom-left { bottom: -50px; left: -50px; }
+            .bottom-right { bottom: -50px; right: -50px; }
+            .letter-content { padding-bottom: 100px; }
+            .text { font-size: clamp(14px, 4vw, 17px); line-height: 1.7; }
         }
 
         @media (max-width: 480px) {
-            .container { 
-                width: 82%; 
-                max-width: 82%;
-            }
-            
-            .letter-wrapper { 
-                min-height: 50vh; 
-                max-height: 55vh;
-                border-width: 6px;
-            }
-            
-            .letter { 
-                padding: 25px 20px;
-            }
-            
-            .corner-decor { 
-                width: 110px; 
-                height: 110px; 
-            }
-            
-            .top-left {
-                top: -45px;
-                left: -45px;
-            }
-            
-            .top-right {
-                top: -45px;
-                right: -45px;
-            }
-            
-            .bottom-left {
-                bottom: -45px;
-                left: -45px;
-            }
-            
-            .bottom-right {
-                bottom: -45px;
-                right: -45px;
-            }
-            
-            .letter-content { 
-                padding-bottom: 85px; 
-            }
-            
-            .text {
-                font-size: clamp(13px, 3.8vw, 16px);
-                line-height: 1.65;
-                word-spacing: -0.2px;
-            }
-            
-            .send-btn {
-                padding: 12px 40px;
-                font-size: clamp(16px, 4.5vw, 19px);
-            }
-            
-            .success {
-                padding: 30px 40px;
-                font-size: clamp(22px, 7vw, 30px);
-            }
+            .container { width: 82%; max-width: 82%; }
+            .letter-wrapper { min-height: 50vh; max-height: 55vh; border-width: 6px; }
+            .letter { padding: 25px 20px; }
+            .corner-decor { width: 110px; height: 110px; }
+            .top-left { top: -45px; left: -45px; }
+            .top-right { top: -45px; right: -45px; }
+            .bottom-left { bottom: -45px; left: -45px; }
+            .bottom-right { bottom: -45px; right: -45px; }
+            .letter-content { padding-bottom: 85px; }
+            .text { font-size: clamp(13px, 3.8vw, 16px); line-height: 1.65; word-spacing: -0.2px; }
+            .send-btn { padding: 12px 40px; font-size: clamp(16px, 4.5vw, 19px); }
+            .success { padding: 30px 40px; font-size: clamp(22px, 7vw, 30px); }
         }
 
         @media (max-width: 400px) {
-            .container { 
-                width: 80%; 
-                max-width: 80%;
-            }
-            
-            .corner-decor { 
-                width: 100px; 
-                height: 100px; 
-            }
-            
-            .top-left {
-                top: -40px;
-                left: -40px;
-            }
-            
-            .top-right {
-                top: -40px;
-                right: -40px;
-            }
-            
-            .bottom-left {
-                bottom: -40px;
-                left: -40px;
-            }
-            
-            .bottom-right {
-                bottom: -40px;
-                right: -40px;
-            }
-            
-            .letter-content { 
-                padding-bottom: 80px; 
-            }
-            
-            .letter { 
-                padding: 22px 18px; 
-            }
-            
-            .text {
-                font-size: clamp(12.5px, 3.5vw, 15px);
-                line-height: 1.6;
-            }
+            .container { width: 80%; max-width: 80%; }
+            .corner-decor { width: 100px; height: 100px; }
+            .top-left { top: -40px; left: -40px; }
+            .top-right { top: -40px; right: -40px; }
+            .bottom-left { bottom: -40px; left: -40px; }
+            .bottom-right { bottom: -40px; right: -40px; }
+            .letter-content { padding-bottom: 80px; }
+            .letter { padding: 22px 18px; }
+            .text { font-size: clamp(12.5px, 3.5vw, 15px); line-height: 1.6; }
         }
 
         @media (max-width: 360px) {
-            .container { 
-                width: 78%;
-                max-width: 78%;
-            }
-            
-            .corner-decor { 
-                width: 90px; 
-                height: 90px; 
-            }
-            
-            .top-left {
-                top: -35px;
-                left: -35px;
-            }
-            
-            .top-right {
-                top: -35px;
-                right: -35px;
-            }
-            
-            .bottom-left {
-                bottom: -35px;
-                left: -35px;
-            }
-            
-            .bottom-right {
-                bottom: -35px;
-                right: -35px;
-            }
-            
-            .letter-content { 
-                padding-bottom: 75px; 
-            }
-            
-            .letter { 
-                padding: 20px 16px; 
-            }
-            
-            .text {
-                font-size: clamp(12px, 3.2vw, 14px);
-                line-height: 1.55;
-                text-align: left;
-                text-align-last: left;
-            }
-            
-            .send-btn {
-                padding: 10px 35px;
-                font-size: clamp(15px, 4vw, 18px);
-            }
+            .container { width: 78%; max-width: 78%; }
+            .corner-decor { width: 90px; height: 90px; }
+            .top-left { top: -35px; left: -35px; }
+            .top-right { top: -35px; right: -35px; }
+            .bottom-left { bottom: -35px; left: -35px; }
+            .bottom-right { bottom: -35px; right: -35px; }
+            .letter-content { padding-bottom: 75px; }
+            .letter { padding: 20px 16px; }
+            .text { font-size: clamp(12px, 3.2vw, 14px); line-height: 1.55; text-align: left; text-align-last: left; }
+            .send-btn { padding: 10px 35px; font-size: clamp(15px, 4vw, 18px); }
         }
 
         @media (max-width: 320px) {
-            .container { 
-                width: 76%; 
-                max-width: 76%;
-            }
-            
-            .corner-decor { 
-                width: 80px; 
-                height: 80px; 
-            }
-            
-            .top-left {
-                top: -32px;
-                left: -32px;
-            }
-            
-            .top-right {
-                top: -32px;
-                right: -32px;
-            }
-            
-            .bottom-left {
-                bottom: -32px;
-                left: -32px;
-            }
-            
-            .bottom-right {
-                bottom: -32px;
-                right: -32px;
-            }
-            
-            .letter-content { 
-                padding-bottom: 70px; 
-            }
-            
-            .text {
-                font-size: clamp(11.5px, 3vw, 13.5px);
-                line-height: 1.5;
-            }
+            .container { width: 76%; max-width: 76%; }
+            .corner-decor { width: 80px; height: 80px; }
+            .top-left { top: -32px; left: -32px; }
+            .top-right { top: -32px; right: -32px; }
+            .bottom-left { bottom: -32px; left: -32px; }
+            .bottom-right { bottom: -32px; right: -32px; }
+            .letter-content { padding-bottom: 70px; }
+            .text { font-size: clamp(11.5px, 3vw, 13.5px); line-height: 1.5; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container" id="container">
+<table class="center-table">
+    <tr>
+        <td class="center-cell">
+            <div class="container" id="container">
 
-        <div class="letter-wrapper" id="letterWrapper">
+                <div class="letter-wrapper" id="letterWrapper">
 
-            <div class="corner-decor top-left"></div>
-            <div class="corner-decor top-right"></div>
-            <div class="corner-decor bottom-left"></div>
-            <div class="corner-decor bottom-right"></div>
+                    <div class="corner-decor top-left"></div>
+                    <div class="corner-decor top-right"></div>
+                    <div class="corner-decor bottom-left"></div>
+                    <div class="corner-decor bottom-right"></div>
 
-            <div class="letter" id="letter">
-                <div class="inner-snow" id="innerSnow"></div>
+                    <div class="letter" id="letter">
+                        <div class="inner-snow" id="innerSnow"></div>
 
-                <div class="letter-content">
-                    <div class="greeting">Дорогой Дедушка Мороз! 🎅</div>
-                    <div class="text">
-                        Здравствуй, добрый волшебник!<br><br>
-                        В этом году я старался быть послушным, оставаться верным своей вере и следовать заветам Аллаха, и я продолжу этот путь. В новом 2026 году я хочу найти такую работу, которая будет приносить мне удовольствие и позволит зарабатывать столько, чтобы хватило на все мои потребности и потребности моей семьи.  Я хочу успевать выполнять рабочие и домашние дела, а главное – проводить больше времени с женой и детьми, летать вместе с семьей в разные страны, посещать моря – для души и здоровья. Пусть мое здоровье и здоровье моей семьи будет стопроцентным. Мечтаю о настоящем новогоднем чуде в 2026 году.<br><br>
-                        Пожалуйста, подари радость моей семье и всем детям на свете.
-                        Пусть снег укроет все грустные моменты, а подарки принесут улыбки и тепло!<br><br>
-                        Спасибо тебе за веру в сказку каждый год ❄️✨
+                        <div class="letter-content">
+                            <div class="greeting">Дорогой Дедушка Мороз! 🎅</div>
+                            <div class="text">
+                                Здравствуй, добрый волшебник!<br><br>
+                                В этом году я старался быть послушным, оставаться верным своей вере и следовать заветам Аллаха, и я продолжу этот путь. В новом 2026 году я хочу найти такую работу, которая будет приносить мне удовольствие и позволит зарабатывать столько, чтобы хватило на все мои потребности и потребности моей семьи.  Я хочу успевать выполнять рабочие и домашние дела, а главное – проводить больше времени с женой и детьми, летать вместе с семьей в разные страны, посещать моря – для души и здоровья. Пусть мое здоровье и здоровье моей семьи будет стопроцентным. Мечтаю о настоящем новогоднем чуде в 2026 году.<br><br>
+                                Пожалуйста, подари радость моей семье и всем детям на свете.
+                                Пусть снег укроет все грустные моменты, а подарки принесут улыбки и тепло!<br><br>
+                                Спасибо тебе за веру в сказку каждый год ❄️✨
+                            </div>
+                            <div class="signature">С любовью,<br>Айрат❤️</div>
+                        </div>
                     </div>
-                    <div class="signature">С любовью,<br>Айрат❤️</div>
                 </div>
+
+                <button class="send-btn" id="sendBtn">Отправить</button>
             </div>
-        </div>
+        </td>
+    </tr>
+</table>
 
-        <button class="send-btn" id="sendBtn">Отправить</button>
-    </div>
+<div class="success" id="success">
+    Письмо улетело к Деду Морозу!<br><br>
+    Жди волшебства под ёлкой! 🎄✨
+</div>
 
-    <div class="success" id="success">
-        Письмо улетело к Деду Морозу!<br><br>
-        Жди волшебства под ёлкой! 🎄✨
-    </div>
-
-    <script>
-        function createSnow(container, count, className) {
-            for (let i = 0; i < count; i++) {
-                const snow = document.createElement('div');
-                snow.className = className;
-                snow.textContent = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
-                snow.style.left = Math.random() * 100 + '%';
-                snow.style.animationDuration = (Math.random() * 8 + 7) + 's';
-                snow.style.animationDelay = Math.random() * 5 + 's';
-                snow.style.fontSize = (Math.random() * 0.8 + 0.8) + 'em';
-                snow.style.opacity = Math.random() * 0.4 + 0.5;
-                container.appendChild(snow);
-            }
+<script>
+    function createSnow(container, count, className) {
+        for (let i = 0; i < count; i++) {
+            const snow = document.createElement('div');
+            snow.className = className;
+            snow.textContent = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+            snow.style.left = Math.random() * 100 + '%';
+            snow.style.animationDuration = (Math.random() * 8 + 7) + 's';
+            snow.style.animationDelay = Math.random() * 5 + 's';
+            snow.style.fontSize = (Math.random() * 0.8 + 0.8) + 'em';
+            snow.style.opacity = Math.random() * 0.4 + 0.5;
+            container.appendChild(snow);
         }
+    }
 
-        createSnow(document.body, 100, 'snowflake');
+    createSnow(document.body, 100, 'snowflake');
 
-        function createSnowInside() {
-            const container = document.getElementById('innerSnow');
-            const total = 45;
+    function createSnowInside() {
+        const container = document.getElementById('innerSnow');
+        const total = 45;
 
-            for (let i = 0; i < total; i++) {
-                const snow = document.createElement('div');
-                snow.className = 'inner-snowflake';
-                snow.textContent = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
+        for (let i = 0; i < total; i++) {
+            const snow = document.createElement('div');
+            snow.className = 'inner-snowflake';
+            snow.textContent = ['❄', '❅', '❆'][Math.floor(Math.random() * 3)];
 
-                const size = Math.random() * 30 + 25;
-                snow.style.fontSize = size + 'px';
+            const size = Math.random() * 30 + 25;
+            snow.style.fontSize = size + 'px';
 
-                let topPos;
-                if (i < 15) {
-                    topPos = Math.random() * 30 + '%';
-                } else {
-                    topPos = Math.random() * 170 + 30 + '%';
-                }
-                snow.style.top = topPos;
-
-                snow.style.left = Math.random() * 90 + 5 + '%';
-
-                snow.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
-
-                container.appendChild(snow);
+            let topPos;
+            if (i < 15) {
+                topPos = Math.random() * 30 + '%';
+            } else {
+                topPos = Math.random() * 170 + 30 + '%';
             }
+            snow.style.top = topPos;
+
+            snow.style.left = Math.random() * 90 + 5 + '%';
+
+            snow.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+
+            container.appendChild(snow);
         }
+    }
 
-        createSnowInside();
+    createSnowInside();
 
-        const letterWrapper = document.getElementById('letterWrapper');
-        const sendBtn = document.getElementById('sendBtn');
-        const success = document.getElementById('success');
+    const letterWrapper = document.getElementById('letterWrapper');
+    const sendBtn = document.getElementById('sendBtn');
+    const success = document.getElementById('success');
 
-        sendBtn.addEventListener('click', function() {
-            sendBtn.disabled = true;
-            sendBtn.textContent = 'Летит к Северному полюсу...';
+    sendBtn.addEventListener('click', function() {
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Летит к Северному полюсу...';
 
-            letterWrapper.classList.add('flying');
+        letterWrapper.classList.add('flying');
+
+        setTimeout(() => {
+            success.classList.add('show');
+            sendBtn.classList.add('hidden');
 
             setTimeout(() => {
-                success.classList.add('show');
-                sendBtn.classList.add('hidden');
+                success.classList.remove('show');
+                success.classList.add('hide');
 
                 setTimeout(() => {
-                    success.classList.remove('show');
-                    success.classList.add('hide');
-
-                    setTimeout(() => {
-                        letterWrapper.classList.add('hidden');
-                        sendBtn.classList.add('hidden');
-                    }, 800);
-                    
-                }, 2500);
+                    letterWrapper.classList.add('hidden');
+                    sendBtn.classList.add('hidden');
+                }, 800);
                 
-            }, 3800);
-        });
-    </script>
+            }, 2500);
+            
+        }, 3800);
+    });
+</script>
 </body>
 </html>
